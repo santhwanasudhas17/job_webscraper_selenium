@@ -12,6 +12,7 @@ class BaseScraper:
 
     def _get(self, url):
         self.driver.get(url)
+        print(f"Navigated to {url}")
         time.sleep(Config.PAGE_LOAD_WAIT)
 
     def _find(self, by: By, value: str):
@@ -25,23 +26,37 @@ class BaseScraper:
             return self.driver.find_elements(by, value)
         except:
             return []
+        
+    def _elements(self, by: By, value: str):
+        try:
+            return self.driver.find_elements(by, value)
+        except:
+            return []
     
     def _text(self, by: By, value: str, default="N/A"):
         element = self._find(by, value)
         return element.text.strip() if element else default
+    
+    def _scroll_to_bottom(self):
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(1.5)
+
+    def _scroll_to_top(self):
+        self.driver.execute_script("window.scrollTo(0, 0);")
+        time.sleep(1)
     
     def login(self):
         Config.validate()
         self._get(f"{Config.url}")
 
         self._find(By.XPATH, "//a[@data-tracking-control-name='guest_homepage-basic_nav-header-signin']").click()
-        time.sleep(5)
+        time.sleep(7)
          
         self._find(By.ID, "username").send_keys(Config.username)
         self._find(By.ID, "password").send_keys(Config.password)
         self._find(By.XPATH, "//button[@aria-label='Sign in']").click()
-
-        input("Press Enter once login is confirmed (complete 2FA if prompted)..")
+        time.sleep(7)
+        # input("Press Enter once login is confirmed (complete 2FA if prompted)..")
         print("Login successful.")
     
     def scrape(self, *args, **kwargs):

@@ -9,6 +9,7 @@ class Config:
     IMPLICIT_WAIT = 10
     PAGE_LOAD_WAIT = 5
     HEADLESS = False  
+    WAIT_TIME= 10
 
     @classmethod
     def validate(cls):
