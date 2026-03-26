@@ -19,7 +19,7 @@ class DriverManager:
         options = Options()
         if Config.HEADLESS:
             options.add_argument('--headless')
-        options.add_argument('--start-maximized')
+        # options.add_argument('--start-maximized')
         options.add_argument('--disable-notifications')
         options.add_argument('--disable-blink-features=AutomationControlled') #Hides Selenium automation signals from websites
         options.add_experimental_option("excludeSwitches", ["enable-automation"]) #Removes the "Chrome is being controlled by automated software" message
