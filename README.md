@@ -79,3 +79,54 @@ export password="your_password"
 > To persist them, set them as system-level environment variables.
 
 ---
+
+## Usage
+
+### Scrape Job Listings
+```bash
+python main.py jobs --keyword "Data Analyst"
+python main.py jobs --keyword "Data Analyst" --location "Bengaluru"
+python main.py jobs --keyword "Data Analyst" --location "Bengaluru" --max-jobs 20
+```
+
+**Arguments:**
+
+| Argument | Required | Default | Description |
+|---|---|---|---|
+| `--keyword` | Yes | — | Job title to search for |
+| `--location` | No | Anywhere | City or region to filter by |
+| `--max-jobs` | No | 10 | Maximum number of jobs to scrape |
+
+**Output:** `jobs.csv`
+
+---
+
+### Scrape a Profile
+```bash
+python main.py profile --url "https://www.linkedin.com/in/username/"
+```
+
+**Arguments:**
+
+| Argument | Required | Description |
+|---|---|---|
+| `--url` | Yes | Full LinkedIn profile URL |
+
+**Output:** `profile.json`
+
+---
+
+### Scrape a Company
+```bash
+python main.py company --url "https://www.linkedin.com/company/google/"
+```
+
+**Arguments:**
+
+| Argument | Required | Description |
+|---|---|---|
+| `--url` | Yes | Full LinkedIn company URL |
+
+**Output:** `company.json`
+
+---
